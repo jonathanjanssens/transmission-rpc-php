@@ -2,6 +2,7 @@
 
 namespace Jtn\Transmission\Tests;
 
+use Jtn\Transmission\Operations\AddTorrent;
 use Jtn\Transmission\Operations\ListTorrents;
 
 class TransmissionTest extends TestCase
@@ -16,6 +17,21 @@ class TransmissionTest extends TestCase
 
         $this->assertTrue(is_array($torrents->torrents));
         $this->assertNotNull($torrents->torrents[0]->id);
+    }
+
+    public function test_the_add_torrent_method_uploads_the_new_torrent()
+    {
+        $transmission = $this->getTransmissionClient();
+
+        $operation = new AddTorrent;
+        $operation->setFilename(__DIR__ . '/resources/BigBuckBunny.torrent');
+
+        $response = $transmission->run($operation);
+
+        $this->assertTrue((
+            isset($response->{'torrent-duplicate'}) ||
+            isset($response->{'torrent-added'})
+        ));
     }
 
 }
