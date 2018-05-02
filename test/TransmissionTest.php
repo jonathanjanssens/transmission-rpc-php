@@ -2,6 +2,8 @@
 
 namespace Jtn\Transmission\Tests;
 
+use Jtn\Transmission\Operations\ListTorrents;
+
 class TransmissionTest extends TestCase
 {
 
@@ -9,9 +11,11 @@ class TransmissionTest extends TestCase
     {
         $transmission = $this->getTransmissionClient();
 
-        $torrents = $transmission->torrentList();
-        $this->assertTrue(is_array($torrents));
-        $this->assertNotNull($torrents[0]->id);
+        $operation = new ListTorrents;
+        $torrents = $transmission->run($operation);
+
+        $this->assertTrue(is_array($torrents->torrents));
+        $this->assertNotNull($torrents->torrents[0]->id);
     }
 
 }

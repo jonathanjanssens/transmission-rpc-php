@@ -4,6 +4,7 @@ namespace Jtn\Transmission;
 
 use GuzzleHttp\Client;
 use Jtn\Transmission\Exception\AuthenticationException;
+use Jtn\Transmission\Operations\AbstractOperation;
 
 class Transmission
 {
@@ -63,36 +64,14 @@ class Transmission
     }
 
     /**
-     * Get a list of all torrents
+     * Run a request for the given operation
      *
+     * @param AbstractOperation $operation
      * @return mixed
      */
-    public function torrentList()
+    public function run(AbstractOperation $operation)
     {
-        return $this->torrentGet();
-    }
-
-    /**
-     * Get a list of torrents with the given ids, will return
-     * all torrents if the $ids parameter is not supplied
-     *
-     * @param integer|array|null $ids
-     * @return mixed
-     */
-    public function torrentGet($ids = null)
-    {
-        $parameters = [
-            'fields' => [
-                'id', 'name', 'status', 'doneDate', 'haveValid', 'totalSize'
-            ]
-        ];
-
-        if($ids !== null) {
-            $ids = is_array($ids) ? $ids : [$ids];
-            $parameters['ids'] = $ids;
-        }
-
-        return $this->request('torrent-get', $parameters)->arguments->torrents;
+        return $this->request($operation->method(), $operation->parameters())->arguments;
     }
 
     protected function request($action, $parameters = [])
