@@ -13,4 +13,17 @@ class Torrent
     const STATUS_SEED_WAIT = 5;
     const STATUS_SEED = 6;
 
+    const FIELDS_AVAILABLE = [
+        'activityDate', 'addedDate', 'announceResponse', 'announceURL', 'bandwidthPriority', 'comment', 'corruptEver',
+        'creator', 'dateCreated', 'desiredAvailable', 'doneDate', 'downloadDir', 'downloadedEver', 'downloaders',
+        'downloadLimit', 'downloadLimited', 'error', 'errorString', 'eta', 'files', 'fileStats', 'hashString',
+        'haveUnchecked', 'haveValid', 'honorsSessionLimits', 'id', 'isPrivate', 'lastAnnounceTime', 'lastScrapeTime',
+        'leechers', 'leftUntilDone', 'manualAnnounceTime', 'maxConnectedPeers', 'name', 'nextAnnounceTime',
+        'nextScrapeTime', 'peer-limit', 'peers', 'peersConnected', 'peersFrom', 'peersGettingFromUs', 'peersKnown',
+        'peersSendingToUs', 'percentDone', 'pieces', 'pieceCount', 'pieceSize', 'priorities', 'rateDownload',
+        'rateUpload', 'recheckProgress', 'scrapeResponse', 'scrapeURL', 'seeders', 'seedRatioLimit', 'seedRatioMode',
+        'sizeWhenDone', 'startDate', 'status', 'swarmSpeed', 'timesCompleted', 'trackers', 'totalSize', 'torrentFile'.
+        'uploadedEver', 'uploadLimit', 'uploadLimited', 'uploadRatio', 'wanted', 'webseeds', 'webseedsSendingToUs',
+    ];
+
 }
