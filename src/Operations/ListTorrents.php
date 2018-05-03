@@ -66,7 +66,7 @@ class ListTorrents extends AbstractOperation
     {
         $parameters = [];
         if(count($this->ids))
-            $parameters['id'] = $this->ids;
+            $parameters['ids'] = $this->ids;
 
         $parameters['fields'] = $this->fields;
         return $parameters;

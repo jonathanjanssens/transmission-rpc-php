@@ -13,7 +13,7 @@ class TransmissionTest extends TestCase
         $transmission = $this->getTransmissionClient();
 
         $operation = new ListTorrents;
-        $torrents = $transmission->run($operation);
+        $torrents = $transmission->run($operation)->body();
 
         $this->assertTrue(is_array($torrents->torrents));
         $this->assertNotNull($torrents->torrents[0]->id);
@@ -26,7 +26,7 @@ class TransmissionTest extends TestCase
         $operation = new AddTorrent;
         $operation->setFilename(__DIR__ . '/resources/BigBuckBunny.torrent');
 
-        $response = $transmission->run($operation);
+        $response = $transmission->run($operation)->body();
 
         $this->assertTrue((
             isset($response->{'torrent-duplicate'}) ||

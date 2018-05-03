@@ -67,11 +67,13 @@ class Transmission
      * Run a request for the given operation
      *
      * @param AbstractOperation $operation
-     * @return mixed
+     * @return RPCResponse
      */
     public function run(AbstractOperation $operation)
     {
-        return $this->request($operation->method(), $operation->parameters())->arguments;
+        return new RPCResponse(
+            $this->request($operation->method(), $operation->parameters())
+        );
     }
 
     protected function request($action, $parameters = [])
