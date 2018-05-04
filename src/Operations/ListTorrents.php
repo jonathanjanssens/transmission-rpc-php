@@ -54,23 +54,16 @@ class ListTorrents extends AbstractOperation
     /**
      * Set the fields to get
      *
-     * @param array $fields
+     * @param array|string $fields
      * @return $this
      */
     public function setFields($fields = [])
     {
-        $this->fields = $fields;
-        return $this;
-    }
+        if($fields === 'all')
+            $this->fields = Torrent::FIELDS_AVAILABLE;
+        else
+            $this->fields = $fields;
 
-    /**
-     * Request all available fields
-     *
-     * @return $this
-     */
-    public function withAllFields()
-    {
-        $this->fields = Torrent::FIELDS_AVAILABLE;
         return $this;
     }
 
